@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,14 +32,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        //pobieranie parametrów ekranu.
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int widthPixels = metrics.widthPixels;
+        int heightPixels = metrics.heightPixels;
+        System.out.println(widthPixels);
+        System.out.println(heightPixels);
+        double screenInches= Math.sqrt(Math.pow(widthPixels / metrics.xdpi, 2) + Math.pow(heightPixels / metrics.ydpi, 2));
+        setContentView(screenInches <= 5.5 ? R.layout.activity_main : R.layout.activity_main_hdpi);
+
+        //deklaracja zmiennych
         playerTheme[0]= findViewById(R.id.crossTheme);
         playerTheme[1] = findViewById(R.id.circleTheme);
         currentTime[0] = findViewById(R.id.currentTimeX);
         currentTime[1] = findViewById(R.id.currentTimeO);
         beginGame = findViewById(R.id.beginGame);
         titleText = findViewById(R.id.titleText);
+
         //Tablica z możliwymi wariantami wygranej gry.
         final int[][] WINNING_VARIANTS = {
                 {0, 1, 2},
@@ -132,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
     //Zatrzymaj czas gdy wygrana lub przegrana.
     void stopTime(){
         currentSymbol[0] = false;
@@ -205,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
     void customDialog( String text , Intent cutomIntent ){
         Dialog resultdialog = new Dialog(this );
         resultdialog.setContentView( R.layout.dialog );
+
         resultdialog.setCancelable( false );
         TextView textWinner = resultdialog.findViewById( R.id.winner );
         textWinner.setText( text + "\n\nRestart?" );

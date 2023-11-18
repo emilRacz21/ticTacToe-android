@@ -9,33 +9,32 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:textSize="52sp"
         android:id="@+id/titleText"
-        style="@style/HeaderTextStyle.xhdpi"/>
+        style="@style/HeaderTextStyle"/>
 
     <LinearLayout
-        android:layout_marginBottom="22sp"
+        android:layout_marginBottom="12sp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/crossTheme"
-            style="@style/PlayerImageStyle.xhdpi"
+            style="@style/PlayerImageStyle"
             tools:ignore="TextSizeCheck">
 
-            <TextView style="@style/time_title.xhdpi" />
+            <TextView style="@style/time_title" />
 
             <TextView
                 android:id="@+id/currentTimeX"
-                style="@style/time_dynamic.xhdpi" />
+                style="@style/time_dynamic" />
 
             <TextView
-                style="@style/player.xhdpi"
+                style="@style/player"
                 android:text="@string/playerx" />
 
             <ImageView
-                style="@style/SquareImageStyle.xhdpi"
+                style="@style/SquareImageStyle"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/cross" />
         </LinearLayout>
@@ -43,19 +42,19 @@
         <LinearLayout
             android:id="@+id/circleTheme"
             android:layout_marginStart="32sp"
-            style="@style/PlayerImageStyle.xhdpi"
+            style="@style/PlayerImageStyle"
             tools:ignore="TextSizeCheck">
             <TextView style="@style/time_title" />
 
             <TextView
                 android:id="@+id/currentTimeO"
-                style="@style/time_dynamic.xhdpi" />
+                style="@style/time_dynamic" />
 
             <TextView
-                style="@style/player.xhdpi"
+                style="@style/player"
                 android:text="@string/playery" />
             <ImageView
-                style="@style/SquareImageStyle.xhdpi"
+                style="@style/SquareImageStyle"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/tac" />
         </LinearLayout>
@@ -63,7 +62,7 @@
     <GridLayout
         android:background="@drawable/tictactoe"
         android:layout_gravity="center"
-        android:layout_marginTop="7sp"
+        android:layout_marginTop="22sp"
         android:id="@+id/board"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,92 +70,93 @@
         android:rowCount="3"
         android:padding="5dp">
         <RelativeLayout
-            style="@style/board.xhdpi">
+            style="@style/board">
             <ImageView
                 android:contentDescription="@string/app_name"
                 android:id="@+id/cell1"
-                style="@style/BoardCell.xhdpi">
+                style="@style/BoardCell">
             </ImageView>
         </RelativeLayout>
+
         <RelativeLayout
-            style="@style/board.xhdpi">
+            style="@style/board">
             <ImageView
                 android:contentDescription="@string/app_name"
                 android:id="@+id/cell2"
-                style="@style/BoardCell.xhdpi">
+                style="@style/BoardCell">
             </ImageView>
         </RelativeLayout>
 
         <RelativeLayout
-            style="@style/board.xhdpi">
+            style="@style/board">
             <ImageView
                 android:contentDescription="@string/app_name"
                 android:id="@+id/cell3"
-                style="@style/BoardCell.xhdpi">
+                style="@style/BoardCell">
             </ImageView>
         </RelativeLayout>
 
         <RelativeLayout
-            style="@style/board.xhdpi">
+            style="@style/board">
             <ImageView
                 android:contentDescription="@string/app_name"
                 android:id="@+id/cell4"
-                style="@style/BoardCell.xhdpi">
+                style="@style/BoardCell">
             </ImageView>
         </RelativeLayout>
 
         <RelativeLayout
-            style="@style/board.xhdpi">
+            style="@style/board">
             <ImageView
                 android:contentDescription="@string/app_name"
                 android:id="@+id/cell5"
-                style="@style/BoardCell.xhdpi">
+                style="@style/BoardCell">
             </ImageView>
         </RelativeLayout>
 
         <RelativeLayout
-            style="@style/board.xhdpi">
+            style="@style/board">
             <ImageView
                 android:contentDescription="@string/app_name"
                 android:id="@+id/cell6"
-                style="@style/BoardCell.xhdpi">
+                style="@style/BoardCell">
             </ImageView>
         </RelativeLayout>
 
         <RelativeLayout
-            style="@style/board.xhdpi"
+            style="@style/board"
             tools:ignore="VisualLintBounds">
             <ImageView
                 android:contentDescription="@string/app_name"
                 android:id="@+id/cell7"
-                style="@style/BoardCell.xhdpi">
+                style="@style/BoardCell">
             </ImageView>
         </RelativeLayout>
 
         <RelativeLayout
-            style="@style/board.xhdpi"
+            style="@style/board"
             tools:ignore="VisualLintBounds">
             <ImageView
                 android:contentDescription="@string/app_name"
                 android:id="@+id/cell8"
-                style="@style/BoardCell.xhdpi">
+                style="@style/BoardCell">
             </ImageView>
         </RelativeLayout>
 
         <RelativeLayout
-            style="@style/board.xhdpi"
+            style="@style/board"
             tools:ignore="VisualLintBounds">
             <ImageView
                 android:contentDescription="@string/app_name"
                 android:id="@+id/cell9"
-                style="@style/BoardCell.xhdpi">
+                style="@style/BoardCell">
             </ImageView>
         </RelativeLayout>
     </GridLayout>
 
     <Button
         android:id="@+id/beginGame"
-        style="@style/ButtonTextStyle.xhdpi"
+        style="@style/ButtonTextStyle"
         android:text="@string/start"
         app:cornerRadius="0sp"
         tools:ignore="VisualLintBounds,TextSizeCheck" />
