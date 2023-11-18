@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BoardCell">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_width">90sp</item>
+        <item name="android:layout_height">90sp</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+    <style name="board">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_width">120sp</item>
+        <item name="android:layout_height">120sp</item>
+        <item name="android:background">@drawable/board_cell</item>
+    </style>
+    <style name="time_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">TIME</item>
+        <item name="android:layout_marginTop">12sp</item>
+        <item name="android:fontFamily">@font/font1</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/current</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="time_dynamic">
+            <item name="android:text">00:00</item>
+            <item name="android:fontFamily">@font/font1</item>
+            <item name="android:textColor">@color/white</item>
+            <item name="android:textStyle">bold</item>
+            <item name="android:textSize">30sp</item>
+            <item name="android:layout_gravity">center</item>
+            <item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="player">
+        <item name="android:fontFamily">@font/font1</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginTop">12sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="HeaderTextStyle">
+        <item name="android:text">TIC TAC TOE</item>
+        <item name="android:fontFamily">@font/font1</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginTop">72sp</item>
+        <item name="android:layout_marginBottom">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">72sp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="PlayerImageStyle">
+        <item name="android:layout_width">120sp</item>
+        <item name="android:layout_height">210sp</item>
+        <item name="android:layout_marginEnd">22sp</item>
+        <item name="android:background">@drawable/player_previous</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="ButtonTextStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/cells</item>
+        <item name="android:layout_width">220sp</item>
+        <item name="android:layout_height">100sp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">60sp</item>
+        <item name="android:fontFamily">@font/font1</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="SquareImageStyle">
+        <item name="android:layout_width">70sp</item>
+        <item name="android:layout_height">70sp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">22sp</item>
+    </style>
+
+
+
+</resources>

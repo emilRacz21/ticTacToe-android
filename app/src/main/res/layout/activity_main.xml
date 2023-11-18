@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleText"
+        style="@style/HeaderTextStyle"/>
+
+    <LinearLayout
+        android:layout_marginBottom="22sp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/crossTheme"
+            style="@style/PlayerImageStyle"
+            tools:ignore="TextSizeCheck">
+
+            <TextView style="@style/time_title" />
+
+            <TextView
+                android:id="@+id/currentTimeX"
+                style="@style/time_dynamic" />
+
+            <TextView
+                style="@style/player"
+                android:text="@string/playerx" />
+
+            <ImageView
+                style="@style/SquareImageStyle"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/cross" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/circleTheme"
+            android:layout_marginStart="32sp"
+            style="@style/PlayerImageStyle"
+            tools:ignore="TextSizeCheck">
+            <TextView style="@style/time_title" />
+
+            <TextView
+                android:id="@+id/currentTimeO"
+                style="@style/time_dynamic" />
+
+            <TextView
+                style="@style/player"
+                android:text="@string/playery" />
+            <ImageView
+                style="@style/SquareImageStyle"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/tac" />
+        </LinearLayout>
+    </LinearLayout>
+<GridLayout
+    android:background="@drawable/tictactoe"
+    android:layout_gravity="center"
+    android:layout_marginTop="32sp"
+    android:id="@+id/board"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:columnCount="3"
+    android:rowCount="3"
+    android:padding="5dp">
+    <RelativeLayout
+        style="@style/board">
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/cell1"
+            style="@style/BoardCell">
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/board">
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/cell2"
+            style="@style/BoardCell">
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/board">
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/cell3"
+            style="@style/BoardCell">
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/board">
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/cell4"
+            style="@style/BoardCell">
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/board">
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/cell5"
+            style="@style/BoardCell">
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/board">
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/cell6"
+            style="@style/BoardCell">
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/board"
+        tools:ignore="VisualLintBounds">
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/cell7"
+            style="@style/BoardCell">
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/board"
+        tools:ignore="VisualLintBounds">
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/cell8"
+            style="@style/BoardCell">
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/board"
+        tools:ignore="VisualLintBounds">
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/cell9"
+            style="@style/BoardCell">
+        </ImageView>
+    </RelativeLayout>
+</GridLayout>
+    <Button
+        android:id="@+id/beginGame"
+        android:text="@string/start"
+        style="@style/ButtonTextStyle"
+        app:cornerRadius="0sp"
+        tools:ignore="VisualLintBounds" />
+    </LinearLayout>
