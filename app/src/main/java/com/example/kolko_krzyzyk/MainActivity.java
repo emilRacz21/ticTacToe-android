@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import java.util.Date;
-
 public class MainActivity extends AppCompatActivity {
     String currentPlayer = "O";
     String dateCount;
