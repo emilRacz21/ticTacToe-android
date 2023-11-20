@@ -46,7 +46,6 @@
         <item name="android:text">TIC TAC TOE</item>
         <item name="android:fontFamily">@font/font1</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:layout_marginTop">50sp</item>
         <item name="android:layout_marginBottom">22sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">65sp</item>
@@ -68,7 +67,7 @@
         <item name="android:layout_width">200sp</item>
         <item name="android:layout_height">80sp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_marginTop">10sp</item>
+        <item name="android:layout_marginTop">30sp</item>
         <item name="android:fontFamily">@font/font1</item>
         <item name="android:textSize">50sp</item>
     </style>
@@ -101,9 +100,6 @@
         <item name="android:layout_width">40sp</item>
         <item name="android:layout_height">40sp</item>
     </style>
-    <style name="HeaderTextStyle.xhdpi">
-        <item name="android:layout_marginTop">60sp</item>
-    </style>
     <style name="BoardCell.xhdpi">
         <item name="android:layout_width">60sp</item>
         <item name="android:layout_height">60sp</item>
@@ -113,7 +109,6 @@
         <item name="android:layout_height">105sp</item>
     </style>
     <style name="ButtonTextStyle.xhdpi">
-        <item name="android:layout_marginTop">10sp</item>
         <item name="android:layout_width">200sp</item>
         <item name="android:layout_height">80sp</item>
         <item name="android:textSize">50sp</item>
