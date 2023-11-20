@@ -1,5 +1,7 @@
 package com.example.kolko_krzyzyk;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,16 +11,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import java.util.Date;
 public class MainActivity extends AppCompatActivity {
+    final int[][] WINNING_VARIANTS = {
+            {0, 1, 2},
+            {3, 4, 5},
+            {6, 7, 8},
+            {0, 3, 6},
+            {1, 4, 7},
+            {2, 5, 8},
+            {0, 4, 8},
+            {2, 4, 6}
+    };
     String currentPlayer = "O";
     String dateCount;
     boolean winner = false;
     boolean isClicked = false;
+    boolean playerVsPc = false;
     Button beginGame;
     int occupiedCells = 0;
     ImageView cellButton;
@@ -50,48 +64,11 @@ public class MainActivity extends AppCompatActivity {
         beginGame = findViewById(R.id.beginGame);
         titleText = findViewById(R.id.titleText);
 
-        //Tablica z możliwymi wariantami wygranej gry.
-        final int[][] WINNING_VARIANTS = {
-                {0, 1, 2},
-                {3, 4, 5},
-                {6, 7, 8},
-                {0, 3, 6},
-                {1, 4, 7},
-                {2, 5, 8},
-                {0, 4, 8},
-                {2, 4, 6}
-        };
-
         //Metoda do pobrania buttonów.
         getCells();
 
         //Nasłuch na klikniete buttony.
-        View.OnClickListener onCellClickListener = v -> {
-            if( isClicked ){
-            if( !winner ){
-               cellButton = findViewById(v.getId());
-                animate(Techniques.Landing, 500, 0, cellButton);
-                currentPlayer = ( currentPlayer.equals( "X" ) ) ? "O" : "X";
-                cellButton.setTag( currentPlayer );
-                if( currentPlayer.equals( "X" ) ) {
-                    animate(Techniques.Wobble,500, 0, playerTheme[1]);
-                    yourPlayer(false, true, R.drawable.player_previous, R.drawable.player_current, R.drawable.cross);
-                }
-                else{
-                    animate(Techniques.Flash, 500, 0, playerTheme[0]);
-                    yourPlayer(true, false, R.drawable.player_current, R.drawable.player_previous, R.drawable.tac);
-                }
-                if ( cellButton.isClickable() ){
-                    cellButton.setClickable( false );
-                    occupiedCells++;
-                }
-                checkWin( WINNING_VARIANTS );
-            }
-            }else{
-                //Krótkie powiadomienie gdy gracz nie kliknie przycisku start.
-                makeToast("Press start to begin game!" );
-            }
-        };
+        View.OnClickListener onCellClickListener = v -> clickBoard(v);
 
         //Rozpoczecie gry.
         buttonStart();
@@ -100,16 +77,89 @@ public class MainActivity extends AppCompatActivity {
         //Metoda do wyslanie nasluchu na przyciski do  view onCellClickListener.
         sendCells( onCellClickListener );
     }
-    //Button - Rozpoczecie gry.
-    void buttonStart(){
-        beginGame.setOnClickListener( view ->{
-        if(!isClicked){
-            countTime();
-            animate(Techniques.Flash,500, 0, playerTheme[0]);
-            playerTheme[0].setBackgroundResource( R.drawable.player_current );
-            isClicked = true;
+
+    void clickBoard(View v){
+        if (isClicked && !winner) {
+            cellButton = findViewById(v.getId());
+            animate(Techniques.Landing, 500, 0, cellButton);
+            currentPlayer = (currentPlayer.equals("X")) ? "O" : "X";
+            cellButton.setTag(currentPlayer);
+            if (currentPlayer.equals("X")) {
+                animate(Techniques.Wobble, 500, 0, playerTheme[1]);
+                yourPlayer(false, true, R.drawable.player_previous, R.drawable.player_current, R.drawable.cross);
+            } else {
+                animate(Techniques.Flash, 500, 0, playerTheme[0]);
+                yourPlayer(true, false, R.drawable.player_current, R.drawable.player_previous, R.drawable.tac);
+            }
+            if (cellButton.isClickable()) {
+                cellButton.setClickable(false);
+                occupiedCells++;
+            }
+            checkWin(WINNING_VARIANTS);
+            // tryb gdy jest wlaczony player vs pc.
+            if (!winner && currentPlayer.equals("X") && playerVsPc) {
+                makeComputerMove();
+            }
+        } else {
+            // Short notification when the player doesn't click the start button.
+            makeToast("Press start to begin the game!");
         }
+    }
+    //Wybierz tryb gry
+    void selectGameMode(){
+        beginGame.setVisibility(View.GONE);
+        Dialog dialog = new Dialog(this);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.select_game_mode);
+        RelativeLayout playerVsPlayer = dialog.findViewById(R.id.playervsplayer);
+        animate(Techniques.Flash, 1000,1,playerVsPlayer );
+        RelativeLayout pcPlayer = dialog.findViewById(R.id.playervspc);
+        playerVsPlayer.setOnClickListener( view ->{
+            if(!isClicked){
+                startGame();
+            }
+            dialog.dismiss();
         });
+
+        pcPlayer.setOnClickListener( view ->{
+            startGame();
+            currentTime[1].setText("N/A");
+            dialog.dismiss();
+            playerVsPc = true;
+        });
+        dialog.show();
+    }
+    //poczatkowy button - wybranie trybu gry.
+    void buttonStart(){
+        beginGame.setOnClickListener( view -> selectGameMode());
+    }
+
+    //Komputer wykonuje ruch!
+    void makeComputerMove() {
+        int randomCell;
+        if (occupiedCells < 9) {
+            do {
+                randomCell = (int) (Math.random() * 9);
+            } while (cells[randomCell].getTag() != null);
+
+            cellButton = cells[randomCell];
+            animate(Techniques.Landing, 500, 0, cellButton);
+            currentPlayer = "O";
+            cellButton.setTag(currentPlayer);
+            animate(Techniques.Flash, 500, 0, playerTheme[0]);
+            yourPlayer(true, false, R.drawable.player_current, R.drawable.player_previous, R.drawable.tac);
+            cellButton.setClickable(false);
+            occupiedCells++;
+            checkWin(WINNING_VARIANTS);
+        }
+    }
+
+    //Metoda do rozpoczynania gry!
+    void startGame(){
+        countTime();
+        animate(Techniques.Flash,500, 0, playerTheme[0]);
+        playerTheme[0].setBackgroundResource( R.drawable.player_current );
+        isClicked = true;
     }
 
     //Ustaw zachwaonie gracza gdy jest jego kolej na rozpoczecie ruchu.
@@ -134,7 +184,10 @@ public class MainActivity extends AppCompatActivity {
             ImageView button3 = getButtonByIndex(thirdWariants);
 
             if (button1.getTag() != null && button2.getTag() != null && button3.getTag() != null && button1.getTag().equals(currentPlayer) && button2.getTag().equals(currentPlayer) && button3.getTag().equals(currentPlayer)) {
-                customDialog("Player " + currentPlayer + " win this game \nYour time  \n" + dateCount, restart);
+                if(playerVsPc){
+                    if(currentPlayer.equals("X")) customDialog("Player " + currentPlayer + " win this game \nYour time  \n" + dateCount, restart);
+                        else customDialog("Player " + currentPlayer + " win this game", restart);
+                }else customDialog("Player " + currentPlayer + " win this game \nYour time  \n" + dateCount, restart);
                 winner = true;
                 stopTime();
             } else if (occupiedCells == 9 && !winner) {
@@ -173,29 +226,12 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(dateCount);
     }
 
-    //Sprawdz INDEX buttonów.
-    ImageView getButtonByIndex( int index ) {
-        switch ( index ) {
-            case 0:
-                return cells[0];
-            case 1:
-                return cells[1];
-            case 2:
-                return cells[2];
-            case 3:
-                return cells[3];
-            case 4:
-                return cells[4];
-            case 5:
-                return cells[5];
-            case 6:
-                return cells[6];
-            case 7:
-                return cells[7];
-            case 8:
-                return cells[8];
-            default:
-                return null;
+    // Sprawdz INDEX buttonów.
+    ImageView getButtonByIndex(int index) {
+        if (index >= 0 && index < cells.length) {
+            return cells[index];
+        } else {
+            return null;
         }
     }
     //Pobierz buttony z activity_main.
@@ -212,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
         for (ImageView cell : cells) cell.setOnClickListener(onCellClickListener);
     }
     //Custom dialog po wygranej lub przegranej grze.
+    @SuppressLint("SetTextI18n")
     void customDialog( String text , Intent cutomIntent ){
         Dialog resultdialog = new Dialog(this );
         resultdialog.setContentView( R.layout.dialog );

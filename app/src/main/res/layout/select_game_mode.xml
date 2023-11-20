@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="360sp"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:layout_height="720sp">
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginTop="22sp"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/current"
+            android:fontFamily="@font/font1"
+            android:textSize="63sp"
+            android:text="Select Game mode!"/>
+        <RelativeLayout
+            android:id="@+id/playervsplayer"
+            android:layout_marginTop="22sp"
+            android:layout_gravity="center"
+            android:layout_width="280sp"
+            android:layout_height="220sp"
+            android:background="@drawable/player_previous"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="center"
+                android:textSize="42sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Player\n\nvs\n\nPlayer"
+                android:textColor="@color/white"
+                android:fontFamily="@font/font1"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/playervspc"
+            android:layout_marginTop="22sp"
+            android:layout_gravity="center"
+            android:layout_width="280sp"
+            android:layout_height="220sp"
+            android:background="@drawable/player_previous"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="center"
+                android:textSize="42sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Player\n\nvs\n\nPC"
+                android:textColor="@color/white"
+                android:fontFamily="@font/font1"/>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
