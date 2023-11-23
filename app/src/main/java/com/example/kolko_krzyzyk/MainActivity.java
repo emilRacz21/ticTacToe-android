@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     boolean winner = false;
     boolean isClicked = false;
     boolean playerVsPc = false;
-    Button beginGame;
     int occupiedCells = 0;
     ImageView cellButton;
     TextView titleText;
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     TextView[] currentTime = new TextView[2];
     boolean[] currentSymbol = {true, false};
     ImageView [] cells = new ImageView[9];
+    LinearLayout hideAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +61,8 @@ public class MainActivity extends AppCompatActivity {
         playerTheme[1] = findViewById(R.id.circleTheme);
         currentTime[0] = findViewById(R.id.currentTimeX);
         currentTime[1] = findViewById(R.id.currentTimeO);
-        beginGame = findViewById(R.id.beginGame);
         titleText = findViewById(R.id.titleText);
-
+        hideAll = findViewById(R.id.hideAll);
         //Metoda do pobrania buttonów.
         getCells();
 
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener onCellClickListener = v -> clickBoard(v);
 
         //Rozpoczecie gry.
-        buttonStart();
+        selectGameMode();
         animate(Techniques.Flash, 10000,200,titleText );
 
         //Metoda do wyslanie nasluchu na przyciski do  view onCellClickListener.
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //Wybierz tryb gry
     void selectGameMode(){
-        beginGame.setVisibility(View.GONE);
+        hideAll.setVisibility(View.GONE);
         Dialog dialog = new Dialog(this);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.select_game_mode);
@@ -129,11 +128,6 @@ public class MainActivity extends AppCompatActivity {
         });
         dialog.show();
     }
-    //poczatkowy button - wybranie trybu gry.
-    void buttonStart(){
-        beginGame.setOnClickListener( view -> selectGameMode());
-    }
-
     //Komputer wykonuje ruch!
     void makeComputerMove() {
         int randomCell;
@@ -156,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Metoda do rozpoczynania gry!
     void startGame(){
+        hideAll.setVisibility(View.VISIBLE);
         countTime();
         animate(Techniques.Flash,500, 0, playerTheme[0]);
         playerTheme[0].setBackgroundResource( R.drawable.player_current );

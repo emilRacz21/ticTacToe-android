@@ -9,6 +9,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/hideAll"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
@@ -159,13 +160,6 @@
                 </ImageView>
             </RelativeLayout>
         </GridLayout>
-
-        <Button
-            android:id="@+id/beginGame"
-            style="@style/ButtonTextStyle.xhdpi"
-            android:text="@string/start"
-            app:cornerRadius="0sp"
-            tools:ignore="VisualLintBounds,TextSizeCheck" />
     </LinearLayout>
 
 </RelativeLayout>
